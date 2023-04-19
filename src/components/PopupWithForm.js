@@ -5,7 +5,6 @@ function PopupWithForm(props) {
                 <form
                     className="popup__form"
                     name={props.name}
-                    noValidate
                     onSubmit={props.onSubmit}
                 >
                     <h2 className="popup__title">{props.title}</h2>

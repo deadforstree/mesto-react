@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurentUserContext';
 
-function EditProfilePopup(props) {
+function EditProfilePopup(props, isOpen) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const currentUser = useContext(CurrentUserContext);
@@ -10,7 +10,7 @@ function EditProfilePopup(props) {
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser, isOpen]);
 
     function handleNameChange(e) {
         setName(e.target.value)
@@ -46,7 +46,7 @@ function EditProfilePopup(props) {
                 minLength="2"
                 maxLength="40" pattern="^[a-zA-Zа-яА-я-\s]+$"
                 required
-                value={name}
+                value={name || ''}
                 onChange={handleNameChange}
             />
             <span className="popup__input-error userName-input-error"></span>
